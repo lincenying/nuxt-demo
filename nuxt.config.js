@@ -15,7 +15,7 @@ module.exports = {
         routes: [{
             name: 'item',
             path: '/item/:id',
-            component: 'pages/item.vue'
+            component: 'pages/_item.vue'
         }]
     }
 }
