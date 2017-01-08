@@ -1,8 +1,8 @@
 <template>
 <div>
     <p>
-        vue-router: 
-        <router-link to="/">index</router-link>
+        vue-router:
+        <router-link to="/">index</router-link> | 
         <router-link to="/post">posts</router-link>
     </p>
 </div>

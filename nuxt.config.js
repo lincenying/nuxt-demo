@@ -10,12 +10,5 @@ module.exports = {
         color: '#4FC08D',
         failedColor: '#bf5050',
         duration: 1500
-    },
-    router: {
-        routes: [{
-            name: 'item',
-            path: '/item/:id',
-            component: 'pages/_item.vue'
-        }]
     }
 }

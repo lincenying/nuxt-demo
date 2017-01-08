@@ -2,7 +2,7 @@
 <div>
     <menu-s></menu-s>
     <p>{{ userAgent }}</p>
-    <p>Vuex: {{ counter }} <a href="javascript:;" @click="increment">加一个</a></p>
+    <p>Vuex: {{ counter }} <a href="javascript:;" @click="increment">加1个</a></p>
 </div>
 </template>
 
