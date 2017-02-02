@@ -3,7 +3,8 @@
   "description": "",
   "dependencies": {
     "axios": "^0.15.2",
-    "nuxt": "^0.9.7"
+    "nuxt": "^0.9.7",
+    "store2": "^2.5.0"
   },
   "scripts": {
     "dev": "nuxt",

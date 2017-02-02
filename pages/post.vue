@@ -5,22 +5,27 @@
         <li v-for="item in posts">
             <router-link :to="`/item/${item.id}`">{{ item.title }}!</router-link>
         </li>
+        <li><a @click="nextPage" href="javascript:;">加载下一页</a></li>
     </ul>
 </div>
 
 </template>
 
 <script>
+import Vue from 'vue'
 import { mapGetters } from 'vuex'
+import ls from 'store2'
 import menuS from '~components/menu.vue'
 export default {
     name: 'post',
     serverCacheKey() {
         return Math.floor(Date.now() / 100000)
     },
-    async fetch({ store }) {
-        if (store.state.post.lists.length > 0) return
-        await store.dispatch('post/get')
+    data({ isClient }) {
+        return { isClient }
+    },
+    async fetch({ store, isClient, route: { path } }) {
+        if (store.state.post.lists.length === 0) await store.dispatch('post/get')
     },
     computed: {
         ...mapGetters({
@@ -34,6 +39,35 @@ export default {
     },
     components: {
         menuS
+    },
+    methods: {
+        nextPage() {
+            const params = {
+                page: this.$store.state.post.page + 1
+            }
+            this.$store.dispatch('post/get', params)
+        }
+    },
+    mounted() {
+        if (this.isClient) {
+            var clientHeight = document.documentElement.clientHeight,
+                scrollTop = ls.get(this.$route.path)
+            if (scrollTop) {
+                Vue.nextTick().then(() => {
+                    if (document.documentElement.offsetHeight >= scrollTop + clientHeight) {
+                        window.scrollTo(0, scrollTop)
+                    }
+                    ls.remove(this.$route.path)
+                })
+            }
+        }
+    },
+    beforeRouteLeave(to, from, next) {
+        const scrollTop = document.body.scrollTop
+        const path = from.path
+        if (scrollTop) ls.set(path, scrollTop)
+        else ls.remove(path)
+        next()
     }
 }
 

@@ -1,19 +1,24 @@
 import axios from 'axios'
 
 export const state = {
+    page: 1,
     lists: []
 }
 
 export const actions = {
-    async get({commit}) {
-        const {data: { data }} = await axios.get('https://cnodejs.org/api/v1/topics')
-        commit('set', data)
+    async get({commit}, params = {}) {
+        const {data: { data }} = await axios.get('https://cnodejs.org/api/v1/topics', { params })
+        commit('set', {
+            data,
+            page: params.page || 1
+        })
     }
 }
 
 export const mutations = {
     set(state, payload) {
-        state.lists = payload
+        state.lists = state.lists.concat(payload.data)
+        state.page = payload.page
     }
 }
 
