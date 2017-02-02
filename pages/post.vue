@@ -12,9 +12,8 @@
 </template>
 
 <script>
-import Vue from 'vue'
 import { mapGetters } from 'vuex'
-import ls from 'store2'
+import { scrollTo, scrollSave } from '~plugins/utils'
 import menuS from '~components/menu.vue'
 export default {
     name: 'post',
@@ -24,7 +23,7 @@ export default {
     data({ isClient }) {
         return { isClient }
     },
-    async fetch({ store, isClient, route: { path } }) {
+    async fetch({ store }) {
         if (store.state.post.lists.length === 0) await store.dispatch('post/get')
     },
     computed: {
@@ -49,24 +48,10 @@ export default {
         }
     },
     mounted() {
-        if (this.isClient) {
-            var clientHeight = document.documentElement.clientHeight,
-                scrollTop = ls.get(this.$route.path)
-            if (scrollTop) {
-                Vue.nextTick().then(() => {
-                    if (document.documentElement.offsetHeight >= scrollTop + clientHeight) {
-                        window.scrollTo(0, scrollTop)
-                    }
-                    ls.remove(this.$route.path)
-                })
-            }
-        }
+        if (this.isClient) scrollTo(this.$route.path)
     },
     beforeRouteLeave(to, from, next) {
-        const scrollTop = document.body.scrollTop
-        const path = from.path
-        if (scrollTop) ls.set(path, scrollTop)
-        else ls.remove(path)
+        scrollSave(from.path)
         next()
     }
 }
