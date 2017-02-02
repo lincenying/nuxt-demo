@@ -6,18 +6,20 @@
 </template>
 
 <script>
-import menuS from '~components/menu.vue'
+/*eslint no-inline-comments: "off"*/
 import axios from 'axios'
+import menuS from '~components/menu.vue'
 export default {
-    data({ params, error }) {
-        return axios.get(`https://cnodejs.org/api/v1/topic/${params.id}`)
-            .then(res => res.data)
-            .catch(() => {
-                error({
-                    message: 'Page not found',
-                    statusCode: 404
-                })
+    async data({ params, error /* , req, res, isClient, isDev, isServer, query, redirect, route, store */ }) {
+        try {
+            const { data } = await axios.get(`https://cnodejs.org/api/v1/topic/${params.id}`)
+            return data
+        } catch(err) {
+            error({
+                message: 'Page not found',
+                statusCode: 404
             })
+        }
     },
     head() {
         return {

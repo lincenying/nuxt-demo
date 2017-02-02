@@ -1,9 +1,9 @@
 {
-  "name": "nuxt-async-data",
+  "name": "nuxt-demo",
   "description": "",
   "dependencies": {
     "axios": "^0.15.2",
-    "nuxt": "^0.9.5"
+    "nuxt": "^0.9.7"
   },
   "scripts": {
     "dev": "nuxt",
@@ -11,7 +11,7 @@
     "start": "nuxt start"
   },
   "devDependencies": {
-    "babel-plugin-transform-export-extensions": "^6.8.0",
-    "babel-plugin-transform-runtime": "^6.15.0"
+    "babel-plugin-transform-export-extensions": "^6.22.0",
+    "babel-plugin-transform-runtime": "^6.22.0"
   }
 }
