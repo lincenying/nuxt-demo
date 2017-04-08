@@ -8,12 +8,15 @@
         <el-table-column prop="name" label="姓名" width="180"> </el-table-column>
         <el-table-column prop="address" label="地址"> </el-table-column>
     </el-table>
+    <div class="a" style="padding: 10px;">
+        <el-tag v-for="item in tag" :type="item.type">{{ item.text }}</el-tag>
+    </div>
 </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
-import { Table, TableColumn } from 'element-ui'
+import { Table, TableColumn, Tag } from 'element-ui'
 import menuS from '~components/menu.vue'
 export default {
     name: 'index',
@@ -48,6 +51,22 @@ export default {
                     date: '2016-05-03',
                     name: '王小虎',
                     address: '上海市普陀区金沙江路 1516 弄'
+                }],
+                tag: [{
+                    type: 'gray',
+                    text: '标签一'
+                }, {
+                    type: 'primary',
+                    text: '标签一'
+                }, {
+                    type: 'success',
+                    text: '标签一'
+                }, {
+                    type: 'warning',
+                    text: '标签一'
+                }, {
+                    type: 'danger',
+                    text: '标签一'
                 }]
             })
         }, 100)
@@ -61,6 +80,7 @@ export default {
         menuS,
         elTable: Table,
         elTableColumn: TableColumn,
+        elTag: Tag,
     },
     methods: {
         increment() {
