@@ -5,7 +5,11 @@
         ["transform-runtime", {
             "polyfill": true,
             "regenerator": true
-        }]
+        }],
+        ["component", [{
+            "libraryName": "element-ui",
+            "styleLibraryName": "theme-default"
+        }]]
     ],
     "comments": false
 }
