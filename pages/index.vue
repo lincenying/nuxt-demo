@@ -9,7 +9,7 @@
         <el-table-column prop="address" label="地址"> </el-table-column>
     </el-table>
     <div class="a" style="padding: 10px;">
-        <el-tag v-for="item in tag" :type="item.type">{{ item.text }}</el-tag>
+        <el-tag v-for="(item, index) in tag" :type="item.type" :key="index">{{ item.text }}</el-tag>
     </div>
 </div>
 </template>
