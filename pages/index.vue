@@ -28,7 +28,7 @@ export default {
         'counter'
     ]),
     asyncData({ req }, callback) {
-        setTimeout(function() {
+        setTimeout(() => {
             // callback(err, data)
             callback(null, {
                 userAgent: req ? req.headers['user-agent'] : navigator.userAgent,
