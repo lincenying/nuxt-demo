@@ -10,7 +10,7 @@
 import axios from 'axios'
 import menuS from '~components/menu.vue'
 export default {
-    async data({ params, error /* , req, res, isClient, isDev, isServer, query, redirect, route, store */ }) {
+    async asyncData({ params, error /* , req, res, isClient, isDev, isServer, query, redirect, route, store */ }) {
         try {
             const { data } = await axios.get(`https://cnodejs.org/api/v1/topic/${params.id}`)
             return data

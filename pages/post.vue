@@ -20,7 +20,7 @@ export default {
     serverCacheKey() {
         return Math.floor(Date.now() / 100000)
     },
-    data({ isClient }) {
+    asyncData({ isClient }) {
         return { isClient }
     },
     async fetch({ store }) {
