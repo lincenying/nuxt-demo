@@ -5,7 +5,7 @@
         <li v-for="item in posts">
             <router-link :to="`/item/${item.id}`">{{ item.title }}!</router-link>
         </li>
-        <li><a @click="nextPage" href="javascript:;">加载下一页</a></li>
+        <li><a @click="nextPage" href="javascript:;">{{ date }} 加载下一页</a></li>
     </ul>
 </div>
 
@@ -21,7 +21,7 @@ export default {
         return Math.floor(Date.now() / 100000)
     },
     asyncData({ isClient }) {
-        return { isClient }
+        return { isClient, date: Date.now() }
     },
     async fetch({ store }) {
         if (store.state.post.lists.length === 0) await store.dispatch('post/get')

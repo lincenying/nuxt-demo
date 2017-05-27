@@ -1,9 +1,9 @@
 import axios from 'axios'
 
-export const state = {
+export const state = () => ({
     page: 1,
     lists: []
-}
+})
 
 export const actions = {
     async get({commit}, params = {}) {

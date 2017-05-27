@@ -1,10 +1,20 @@
 module.exports = {
     build: {
-        vendor: ['axios']
+        vendor: ['axios'],
+        ssr: {
+            cache: require('lru-cache')({
+                max: 1000,
+                maxAge: 1000 * 60 * 15
+            })
+        }
     },
-    cache: true,
+    cache: {
+        max: 1000,
+        maxAge: 900000
+    },
     css: [
-        'assets/main.css'
+        'assets/main.css',
+        'element-ui/packages/theme-default/lib/index.css'
     ],
     loading: {
         color: '#4FC08D',

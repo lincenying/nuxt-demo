@@ -1,7 +1,7 @@
 <template>
 <div>
     <menu-s></menu-s>
-    <p>{{ userAgent }}</p>
+    <p>{{ userAgent }} {{ date }}</p>
     <p>Vuex: {{ counter }} <a href="javascript:;" @click="increment">加1个</a></p>
     <el-table :data="tableData" style="width: 100%">
         <el-table-column prop="date" label="日期" width="180"> </el-table-column>
@@ -22,7 +22,7 @@ export default {
     name: 'index',
     serverCacheKey () {
         // Will change every 100 secondes
-        return Math.floor(Date.now() / 100000)
+        return 'index_' + Math.floor(Date.now() / 100000)
     },
     fetch({ store }) {
         store.commit('increment')
@@ -30,6 +30,11 @@ export default {
     computed: mapState([
         'counter'
     ]),
+    data() {
+        return {
+            date: Date.now()
+        }
+    },
     asyncData({ req }, callback) {
         setTimeout(() => {
             // callback(err, data)
