@@ -1,4 +1,4 @@
-import axios from 'axios'
+import api from 'apiConfig'
 
 export const state = () => ({
     page: 1,
@@ -6,12 +6,11 @@ export const state = () => ({
 })
 
 export const actions = {
-    async get({commit}, params = {}) {
-        const {data: { data }} = await axios.get('https://cnodejs.org/api/v1/topics', { params })
-        commit('set', {
-            data,
-            page: params.page || 1
-        })
+    async get({commit, state}, {params = {}, context}) {
+        const page = params.page || 1
+        if (state.lists.length > 0 && page === 1) return
+        const {data: { data }} = await api.get('https://cnodejs.org/api/v1/topics', params, context)
+        commit('set', { data, page, })
     }
 }
 

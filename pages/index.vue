@@ -16,7 +16,9 @@
 
 <script>
 import { mapState } from 'vuex'
-import { Table, TableColumn, Tag } from 'element-ui'
+import Table from 'element-ui/lib/table'
+import TableColumn from 'element-ui/lib/table-column'
+import Tag from 'element-ui/lib/tag'
 import menuS from '~components/menu.vue'
 export default {
     name: 'index',

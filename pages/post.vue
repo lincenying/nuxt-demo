@@ -15,6 +15,7 @@
 import { mapGetters } from 'vuex'
 import { scrollTo, scrollSave } from '~plugins/utils'
 import menuS from '~components/menu.vue'
+
 export default {
     name: 'post',
     serverCacheKey() {
@@ -23,8 +24,9 @@ export default {
     asyncData({ isClient }) {
         return { isClient, date: Date.now() }
     },
-    async fetch({ store }) {
-        if (store.state.post.lists.length === 0) await store.dispatch('post/get')
+    async fetch(context) {
+        const store = context.store
+        await store.dispatch('post/get', { context })
     },
     computed: {
         ...mapGetters({
@@ -44,7 +46,7 @@ export default {
             const params = {
                 page: this.$store.state.post.page + 1
             }
-            this.$store.dispatch('post/get', params)
+            this.$store.dispatch('post/get', {params})
         }
     },
     mounted() {

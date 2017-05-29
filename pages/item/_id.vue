@@ -7,12 +7,13 @@
 
 <script>
 /*eslint no-inline-comments: "off"*/
-import axios from 'axios'
+import api from 'apiConfig'
 import menuS from '~components/menu.vue'
 export default {
-    async asyncData({ params, error /* , req, res, isClient, isDev, isServer, query, redirect, route, store */ }) {
+    async asyncData(connext) {
+        const { params, error /* , req, res, isClient, isDev, isServer, query, redirect, route, store */ } = connext
         try {
-            const { data } = await axios.get(`https://cnodejs.org/api/v1/topic/${params.id}`)
+            const { data } = await api.get(`https://cnodejs.org/api/v1/topic/${params.id}`, {}, connext)
             return data
         } catch(err) {
             error({
@@ -31,11 +32,3 @@ export default {
     }
 }
 </script>
-
-<style scoped>
-p {
-    font-size: 20px;
-    padding: 100px;
-    padding-bottom: 0;
-}
-</style>

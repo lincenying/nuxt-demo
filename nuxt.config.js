@@ -1,3 +1,4 @@
+const join = require('path').join
 module.exports = {
     build: {
         vendor: ['axios'],
@@ -6,6 +7,13 @@ module.exports = {
                 max: 1000,
                 maxAge: 1000 * 60 * 15
             })
+        },
+        extend(config, { isClient }) {
+            if (isClient) {
+                config.resolve.alias['apiConfig'] = join(__dirname, 'api/index-client.js')
+            } else {
+                config.resolve.alias['apiConfig'] = join(__dirname, 'api/index-server.js')
+            }
         }
     },
     cache: {
@@ -14,7 +22,9 @@ module.exports = {
     },
     css: [
         'assets/main.css',
-        'element-ui/packages/theme-default/lib/index.css'
+        'element-ui/packages/theme-default/lib/table.css',
+        'element-ui/packages/theme-default/lib/table-column.css',
+        'element-ui/packages/theme-default/lib/tag.css',
     ],
     loading: {
         color: '#4FC08D',
