@@ -5,7 +5,7 @@
         <li v-for="item in posts">
             <router-link :to="`/item/${item.id}`">{{ item.title }}!</router-link>
         </li>
-        <li><a @click="nextPage" href="javascript:;">{{ date }} 加载下一页</a></li>
+        <li><a @click="nextPage" href="javascript:;">加载下一页</a></li>
     </ul>
 </div>
 

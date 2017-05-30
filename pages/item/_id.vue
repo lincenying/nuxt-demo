@@ -1,7 +1,13 @@
 <template>
-<div>
+<div class="item">
     <menu-s></menu-s>
     <div v-html="data.content"></div>
+    <ul>
+        <li v-for="(item, index) in data.replies">
+            <h5>第 {{ index + 1 }} 楼: {{ item.author.loginname }}</h5>
+            <div v-html="item.content"></div>
+        </li>
+    </ul>
 </div>
 </template>
 
