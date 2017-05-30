@@ -13,7 +13,7 @@ export default {
     async asyncData(connext) {
         const { params, error /* , req, res, isClient, isDev, isServer, query, redirect, route, store */ } = connext
         try {
-            const { data } = await api.get(`https://cnodejs.org/api/v1/topic/${params.id}`, {}, connext)
+            const { data } = await api.get(`https://cnodejs.org/api/v1/topic/${params.id}`, {}, {...connext, xhrCache: true})
             return data
         } catch(err) {
             error({
