@@ -1,11 +1,12 @@
 {
   "name": "nuxt-demo",
+  "version": "1.0.1",
   "description": "",
   "dependencies": {
-    "axios": "^0.16.1",
-    "element-ui": "^1.3.4",
+    "axios": "^0.16.2",
+    "element-ui": "^1.3.7",
     "md5": "^2.2.1",
-    "nuxt": "^1.0.0-alpha2",
+    "nuxt": "1.0.0-alpha.4",
     "store2": "^2.5.1"
   },
   "scripts": {
@@ -19,7 +20,8 @@
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
+    "eslint-config-lcy-vue": "^2.0.1",
     "less": "^2.7.2",
-    "less-loader": "^4.0.3"
+    "less-loader": "^4.0.4"
   }
 }
