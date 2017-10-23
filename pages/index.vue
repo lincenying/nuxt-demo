@@ -2,11 +2,15 @@
 <div>
     <menu-s></menu-s>
     <p>{{ userAgent }} {{ date }}</p>
-    <p>Vuex: {{ counter }} <a href="javascript:;" @click="increment">加1个</a></p>
+    <p>Vuex: {{ counter }} <a href="javascript:;" @click="increment">加1个```</a></p>
     <el-table :data="tableData" style="width: 100%">
         <el-table-column prop="date" label="日期" width="180"> </el-table-column>
         <el-table-column prop="name" label="姓名" width="180"> </el-table-column>
-        <el-table-column prop="address" label="地址"> </el-table-column>
+        <el-table-column label="地址">
+            <template scope="scope">
+                {{ scope.row.address }}
+            </template>
+        </el-table-column>
     </el-table>
     <div class="a" style="padding: 10px;">
         <el-tag v-for="(item, index) in tag" :type="item.type" :key="index">{{ item.text }}</el-tag>
@@ -19,7 +23,7 @@ import { mapState } from 'vuex'
 import Table from 'element-ui/lib/table'
 import TableColumn from 'element-ui/lib/table-column'
 import Tag from 'element-ui/lib/tag'
-import menuS from '~components/menu.vue'
+import menuS from '@/components/menu.vue'
 export default {
     name: 'index',
     serverCacheKey () {

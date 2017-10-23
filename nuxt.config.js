@@ -1,13 +1,15 @@
 const join = require('path').join
 module.exports = {
-    build: {
-        vendor: ['axios'],
-        ssr: {
+    render: {
+        bundleRenderer: {
             cache: require('lru-cache')({
                 max: 1000,
                 maxAge: 1000 * 60 * 15
             })
-        },
+        }
+    },
+    build: {
+        vendor: ['axios'],
         extend(config, { isClient }) {
             if (isClient) {
                 config.resolve.alias['apiConfig'] = join(__dirname, 'api/index-client.js')

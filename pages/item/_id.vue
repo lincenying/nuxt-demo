@@ -14,7 +14,7 @@
 <script>
 /*eslint no-inline-comments: "off"*/
 import api from 'apiConfig'
-import menuS from '~components/menu.vue'
+import menuS from '@/components/menu.vue'
 export default {
     async asyncData(connext) {
         const { params, error /* , req, res, isClient, isDev, isServer, query, redirect, route, store */ } = connext

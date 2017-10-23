@@ -13,8 +13,8 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import { scrollTo, scrollSave } from '~plugins/utils'
-import menuS from '~components/menu.vue'
+import { scrollTo, scrollSave } from '@/plugins/utils'
+import menuS from '@/components/menu.vue'
 
 export default {
     name: 'post',
