@@ -13,7 +13,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import { scrollTo, scrollSave } from '@/plugins/utils'
+import { scrollTo, scrollSave } from '@/utils'
 import menuS from '@/components/menu.vue'
 
 export default {
@@ -21,8 +21,8 @@ export default {
     serverCacheKey() {
         return Math.floor(Date.now() / 100000)
     },
-    asyncData({ isClient }) {
-        return { isClient, date: Date.now() }
+    asyncData() {
+        return { isClient: process.client, date: Date.now() }
     },
     async fetch(context) {
         const store = context.store

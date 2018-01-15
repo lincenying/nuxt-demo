@@ -19,8 +19,7 @@ function checkStatus(response) {
 }
 
 export default {
-    post(url, data, context = {}) {
-        console.log(context)
+    post(url, data) {
         return axios({
             method: 'post',
             url: config.api + url,
@@ -32,8 +31,7 @@ export default {
             }
         }).then(checkStatus)
     },
-    get(url, params, context = {}) {
-        console.log(context)
+    get(url, params) {
         return axios({
             method: 'get',
             url: config.api + url,

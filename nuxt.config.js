@@ -1,4 +1,5 @@
 const join = require('path').join
+
 module.exports = {
     render: {
         bundleRenderer: {
@@ -12,10 +13,19 @@ module.exports = {
         vendor: ['axios'],
         extend(config, { isClient }) {
             if (isClient) {
-                config.resolve.alias['apiConfig'] = join(__dirname, 'api/index-client.js')
+                config.resolve.alias['~api'] = join(__dirname, 'api/index-client.js')
             } else {
-                config.resolve.alias['apiConfig'] = join(__dirname, 'api/index-server.js')
+                config.resolve.alias['~api'] = join(__dirname, 'api/index-server.js')
             }
+        },
+        extractCSS: true,
+        babel: {
+            plugins: [
+                [ "component", {
+                    "libraryName": "element-ui",
+                    "styleLibraryName": "theme-chalk"
+                }]
+            ]
         }
     },
     cache: {
@@ -24,13 +34,14 @@ module.exports = {
     },
     css: [
         'assets/main.css',
-        'element-ui/packages/theme-default/lib/table.css',
-        'element-ui/packages/theme-default/lib/table-column.css',
-        'element-ui/packages/theme-default/lib/tag.css',
+        'element-ui/packages/theme-chalk/lib/table.css',
+        'element-ui/packages/theme-chalk/lib/table-column.css',
+        'element-ui/packages/theme-chalk/lib/tag.css',
     ],
     loading: {
         color: '#4FC08D',
         failedColor: '#bf5050',
         duration: 1500
-    }
+    },
+    plugins: ['~plugins/element']
 }

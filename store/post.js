@@ -1,4 +1,4 @@
-import api from 'apiConfig'
+import api from '~api'
 
 export const state = () => ({
     page: 1,

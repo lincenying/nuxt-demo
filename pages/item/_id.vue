@@ -13,7 +13,7 @@
 
 <script>
 /*eslint no-inline-comments: "off"*/
-import api from 'apiConfig'
+import api from '~api'
 import menuS from '@/components/menu.vue'
 export default {
     async asyncData(connext) {

@@ -1,8 +1,8 @@
 <script>
 export default {
-    name: 'menu',
+    name: 'menus',
     serverCacheKey () {
-        return 'menu'
+        return 'menus'
     },
     // eslint-disable-next-line
     render(h) {

@@ -15,7 +15,7 @@ export const scrollTo = path => {
 }
 
 export const scrollSave = path => {
-    const scrollTop = document.body.scrollTop
+    const scrollTop = Math.max(window.pageYOffset, document.documentElement.scrollTop, document.body.scrollTop)
     if (scrollTop) ls.set(path, scrollTop)
     else ls.remove(path)
 }
