@@ -33,7 +33,7 @@ module.exports = {
         maxAge: 900000
     },
     css: [
-        'assets/main.css',
+        '~/assets/main.css',
         'element-ui/packages/theme-chalk/lib/table.css',
         'element-ui/packages/theme-chalk/lib/table-column.css',
         'element-ui/packages/theme-chalk/lib/tag.css',
@@ -43,5 +43,5 @@ module.exports = {
         failedColor: '#bf5050',
         duration: 1500
     },
-    plugins: ['~plugins/element']
+    plugins: ['~/plugins/element']
 }

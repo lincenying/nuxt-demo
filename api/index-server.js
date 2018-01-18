@@ -26,12 +26,13 @@ export default {
             timeout: config.timeout,
         })
     },
-    post(url, data) {
+    post(url, data, context) {
         if (!this.api) this.setCookies()
         const cookies = this.cookies
         const username = cookies.username || ''
         const key = md5(url + JSON.stringify(data) + username)
-        if (config.cached && data.cache && config.cached.has(key)) {
+        if (config.cached && context.xhrCache && config.cached.has(key)) {
+            console.log('命中缓存')
             return Promise.resolve(config.cached.get(key))
         }
         return this.api({
@@ -42,16 +43,17 @@ export default {
                 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
             }
         }).then(res => {
-            if (config.cached && data.cache) config.cached.set(key, res)
+            if (config.cached && context.xhrCache) config.cached.set(key, res)
             return res
         })
     },
-    get(url, params) {
+    get(url, params, context) {
         if (!this.api) this.setCookies()
         const cookies = this.cookies
         const username = cookies.username || ''
         const key = md5(url + JSON.stringify(params) + username)
-        if (config.cached && params.cache && config.cached.has(key)) {
+        if (config.cached && context.xhrCache && config.cached.has(key)) {
+            console.log('命中缓存')
             return Promise.resolve(config.cached.get(key))
         }
         return this.api({
@@ -59,7 +61,7 @@ export default {
             url,
             params,
         }).then(res => {
-            if (config.cached && params.cache) config.cached.set(key, res)
+            if (config.cached && context.xhrCache) config.cached.set(key, res)
             return res
         })
     }
